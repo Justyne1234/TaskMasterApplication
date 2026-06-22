@@ -1,0 +1,49 @@
+<div class="task-container" *ngIf="task$ | async as task">
+
+  <h2 class="title">Task</h2>
+
+  <div class="task-form">
+
+    <div class="form-group">
+      <label>Title</label>
+      <div class="readonly-field">{{ task.title }}</div>
+    </div>
+
+    <div class="form-group">
+      <label>Description</label>
+      <div class="readonly-field">{{ task.description }}</div>
+    </div>
+
+    <div class="form-group">
+      <label>Due Date</label>
+      <div class="readonly-field">{{ task.dueDate | date }}</div>
+    </div>
+
+    <div class="form-group">
+      <label>Priority</label>
+      <div class="readonly-field">{{ task.priority }}</div>
+    </div>
+
+    <div class="form-group">
+      <label>Category</label>
+      <div class="readonly-field">{{ task.category }}</div>
+    </div>
+
+    <div class="form-group">
+      <label>Status</label>
+      <div class="readonly-field">
+        <span class="status" [ngClass]="task.status.toLowerCase()">
+          {{ formatStatus(task.status) }}
+        </span>
+      </div>
+    </div>
+
+    <div class="button-row">
+      <button class="edit-button" (click)="onEditTask()">Edit</button>
+      <button class="delete-button" (click)="onDeleteTask()">Delete</button>
+      <button class="cancel-button" (click)="onReturn()">Return</button>
+    </div>
+
+  </div>
+
+</div>

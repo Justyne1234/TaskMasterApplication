@@ -1,0 +1,13 @@
+<div class="card-container">
+    <div *ngFor="let task of tasks$ | async" class="task-card" (click)="onSelectTask(task.id)">
+        <div class="card-col-1">
+            <h3>{{ task.title }}</h3>
+            <p>{{ task.description }}</p>
+        </div>
+        
+        <div class="card-col-2">
+            <span>{{ formatStatus(task.status) }}</span>
+            <span>{{ task.priority }}</span>
+        </div>
+    </div>
+</div>

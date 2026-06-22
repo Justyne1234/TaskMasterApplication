@@ -1,0 +1,9 @@
+<nav class="navbar">
+    <div class="logo">
+        <img src="assets/logo.jpg" alt="Task Master Logo" />
+    </div>
+
+    <div class="links" *ngIf="isLoggedIn$ | async">
+      <button (click)="logout()">Logout</button>
+  </div>
+</nav>

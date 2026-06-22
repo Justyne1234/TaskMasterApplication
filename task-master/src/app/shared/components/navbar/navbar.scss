@@ -1,0 +1,29 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: white;
+  color: black;
+}
+
+.logo {
+}
+.logo img {
+    height: 60px;   /* reduce or increase this */
+    width: auto;    /* keeps proportions */
+}
+.links {
+  margin-left: auto; /* pushes it to the right */
+}
+
+button {
+  background: red;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  cursor: pointer;
+  border-radius: 6px;
+  
+  width: 120px;
+}

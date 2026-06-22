@@ -1,0 +1,25 @@
+<div class="login-container">
+    <h1 class="title">Task Master</h1>
+
+    <form (ngSubmit)="onLogin()" #loginForm="ngForm" class="login-form">
+        <input
+            type="text"
+            name="username"
+            placeholder="Email"
+            [(ngModel)]="username"
+            required>
+        <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            [(ngModel)]="password"
+            required>
+
+        <button type="submit" [disabled]="loginForm.invalid" class="submit-button">Login</button>
+    </form>
+    <div class="google-button-container">
+        <div id="google-button">Google</div>
+    </div>
+    <p class="error-message">{{ errorMessage }}</p>
+    <a routerLink="/register">Don't have an account yet?</a>
+</div>
