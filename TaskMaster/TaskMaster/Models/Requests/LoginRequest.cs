@@ -1,6 +1,11 @@
-﻿namespace TaskMaster.Models.Requests;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace TaskMaster.Models.Requests;
 public class LoginRequest
 {
+    [Required]
     public string Username { get; set; }
+    [Required]
     public string Password { get; set; }
+    //public string AuthenticationMethod { get; set; }
 }

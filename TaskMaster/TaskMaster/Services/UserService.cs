@@ -46,12 +46,21 @@ public class UserService : IUserService
         {
             throw new UserAlreadyExistsException(existingUser.Username);
         }
+
+        //New User. Register
+
         var user = new User
         {
             Username = request.Username,
+            AuthenticationMethod = request.AuthenticationMethod,
+            GoogleId = request.GoogleId ?? string.Empty,
         };
-        user.Password = _passwordHasher.HashPassword(user, request.Password);
-        
+
+        if (request.AuthenticationMethod.Equals("Traditional"))
+        {
+            user.Password = _passwordHasher.HashPassword(user, request.Password);
+        }
+
         var registeredUser = await _userRepository.Register(user);
         
         if (registeredUser is null)

@@ -56,7 +56,10 @@ export class AuthService {
   }
   register(username: string, password: string){
     const payload = {
-      username, password
+      username,
+      password,
+      "googleId": "",
+      "authenticationMethod": "Traditional"
     }
     return this.httpClient.post(`${this.url}/register`, payload);
   }

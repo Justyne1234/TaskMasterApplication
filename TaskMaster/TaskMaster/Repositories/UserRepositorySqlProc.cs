@@ -22,7 +22,7 @@ public class UserRepositorySqlProc : IUserRepository
     public async Task<User> Register(User request)
     {
         await _dbContext.Database
-            .ExecuteSqlInterpolatedAsync($@"CALL RegisterUser({request.Username}, {request.Password})");
-        return request;
+            .ExecuteSqlInterpolatedAsync($@"CALL RegisterUser({request.Username}, {request.Password}, {request.AuthenticationMethod}, {request.GoogleId})");
+        return await GetUserByUsername(request.Username);
     }
 }

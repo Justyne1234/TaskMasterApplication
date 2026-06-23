@@ -17,9 +17,7 @@ public class GoogleApiService
             Audience = new[] { _options.ClientId }
         };
 
-        var payload = await GoogleJsonWebSignature.ValidateAsync(idToken, settings);
-
-        return payload;
+        return await GoogleJsonWebSignature.ValidateAsync(idToken, settings);
     }
 }
 

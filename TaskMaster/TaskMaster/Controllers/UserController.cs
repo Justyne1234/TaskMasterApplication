@@ -36,11 +36,23 @@ public class UserController : Controller
     {
         var payload = await _googleApiService.VerifyGoogleToken(request.googleToken);
 
+        if (payload == null)
+        {
+            return Unauthorized(new { message = "Unauthorized user" });
+        }
+
         var user = await _userService.GetUserByUsername(payload.Email);
 
         if(user is null)
         {
-            return NotFound(new { message = "Unregistered user" });
+            user = await _userService.Register(new RegistrationRequest
+            {
+                Username = payload.Email,
+                Password = payload.Email,
+                GoogleId = payload.Subject,
+                AuthenticationMethod = "Google",
+                
+            });
         }
 
         var token = _userService.GenerateJwtToken(user);
