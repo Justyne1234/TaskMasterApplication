@@ -20,16 +20,7 @@ export class TaskPageComponent {
 
   tasks$!: Observable<TaskResponse[]>;
 
-  constructor(private taskService: TaskService, private router: Router){}
-
-  ngOnInit(){
-    this.loadTasks();
-  }
-
-  loadTasks(){
-    this.tasks$ = this.taskService.getTasks()
-    .pipe(map(response => response ?? []));
-  }
+  constructor(private router: Router){}
 
   onCreate(){
     console.log("on create clicked!");

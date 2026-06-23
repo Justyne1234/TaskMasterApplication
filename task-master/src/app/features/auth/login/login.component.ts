@@ -13,8 +13,8 @@ declare const google: any;
   styleUrl: './login.scss',
 })
 export class LoginComponent {
-  username: string = 'test';
-  password: string = 'test';
+  username: string = '';
+  password: string = '';
 
   errorMessage:string = '';
 
