@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, catchError, Observable, tap, throwError } from 'rxjs';
+import { BehaviorSubject, tap } from 'rxjs';
 import { LoginResponse } from '../models/login-response.model';
 import { environment } from '../../../environments/environment';
 
@@ -34,9 +34,6 @@ export class AuthService {
 
       localStorage.setItem("id", id);
       this.isLoggedInSubject.next(true);
-      }),
-      catchError(error => {
-        return throwError(() => new Error(error.error.message));
       })
     );
   }
@@ -54,9 +51,6 @@ export class AuthService {
 
         localStorage.setItem("id", id);
         this.isLoggedInSubject.next(true);
-      }),
-      catchError(error => {
-          return throwError(() => new Error(error?.error?.message));
       })
     );
   }
@@ -64,12 +58,7 @@ export class AuthService {
     const payload = {
       username, password
     }
-    return this.httpClient.post(`${this.url}/register`, payload).
-    pipe(
-      catchError(error => {
-          return throwError(() => new Error(error?.error?.message));
-      })
-    );
+    return this.httpClient.post(`${this.url}/register`, payload);
   }
 
   getToken(): string | null {

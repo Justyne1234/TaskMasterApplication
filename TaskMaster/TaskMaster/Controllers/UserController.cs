@@ -21,37 +21,15 @@ public class UserController : Controller
     [HttpPost("register")]
     public async Task<IActionResult> RegisterUser([FromBody] RegistrationRequest request)
     {
-        try
-        {
-            var user = await _userService.Register(request);
-            return Ok(user);
-        }
-        catch (UserAlreadyExistsException ex)
-        {
-            return Conflict(new { message = ex.Message });
-        }
-        catch (Exception ex)
-        {
-            return StatusCode(500, new { message = "Unexpected error occurred" });
-        }
+        var user = await _userService.Register(request);
+        return Ok(user);
     }
 
     [HttpPost("login")]
     public async Task<IActionResult> Login([FromBody] LoginRequest request)
     {
-        try
-        {
-            var token = await _userService.Login(request);
-            return Ok(new { message = "success", token });
-        }
-        catch (UnauthorizedAccessException ex)
-        {
-            return Unauthorized(new { message = ex.Message });
-        }
-        catch(Exception ex)
-        {
-            return StatusCode(500, new { message = "Unexpected error occurred" });
-        }
+        var token = await _userService.Login(request);
+        return Ok(new { message = "success", token });
     }
     [HttpPost("google-login")]
     public async Task<IActionResult> GoogleLogin([FromBody] GoogleLoginRequest request)

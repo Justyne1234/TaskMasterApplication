@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Task } from '../models/task.model';
-import { BehaviorSubject, catchError, Observable, switchMap, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, switchMap } from 'rxjs';
 import { TaskResponse } from '../models/task-response.model';
 import { TaskEditRequest } from '../models/task-edit-request.model';
 import { environment } from '../../../environments/environment';
@@ -21,12 +21,7 @@ export class TaskService {
       "ownerId" : id,
       ... task
     };
-    return this.httpClient.post(this.url, payload)
-    .pipe(
-      catchError(error => {
-        return throwError(() => new Error(error?.error?.message));
-      })
-    );
+    return this.httpClient.post(this.url, payload);
   }
 
   getTasks(): Observable<TaskResponse[]>{
@@ -44,20 +39,9 @@ export class TaskService {
     return this.httpClient.get<TaskResponse>(`${this.url}/${id}`);
   }
   editTask(task: TaskEditRequest){
-    console.log("edit task");
-    return this.httpClient.put<TaskResponse>(this.url, task)
-    .pipe(
-      catchError(error => {
-          return throwError(() => new Error(error?.error?.message));
-      })
-    );
+    return this.httpClient.put<TaskResponse>(this.url, task);
   }
   deleteTask(id: string){
-    return this.httpClient.delete(`${this.url}/${id}`)
-    .pipe(
-      catchError(error => {
-          return throwError(() => new Error(error?.error?.message));
-      })
-    );
+    return this.httpClient.delete(`${this.url}/${id}`);
   }
 }

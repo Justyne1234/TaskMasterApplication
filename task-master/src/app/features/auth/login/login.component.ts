@@ -52,7 +52,7 @@ export class LoginComponent {
         this.router.navigate(['/tasks']);
       },
       error: (err) => {
-        console.log("login component error");
+        console.log("err", err);
         this.errorMessage = err.message;
       },
     });

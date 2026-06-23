@@ -27,8 +27,7 @@ public class JwtService
             new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
             new Claim(ClaimTypes.Name, user.Username)
         };
-        Console.WriteLine(DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss"));
-        var expiry = DateTime.UtcNow.AddMinutes(1);
+        var expiry = DateTime.UtcNow.AddMinutes(int.Parse(jwtSettings["ExpireMinutes"]));
         var now = DateTime.UtcNow;
         var token = new JwtSecurityToken(
             issuer: jwtSettings["Issuer"],

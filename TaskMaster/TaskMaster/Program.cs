@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using TaskMaster.DbContexts;
+using TaskMaster.Middlewares;
 using TaskMaster.Models;
 using TaskMaster.Models.Options;
 using TaskMaster.Repositories;
@@ -70,13 +71,7 @@ builder.Services.AddCors(options =>
 });
 
 var app = builder.Build();
-
-// Configure the HTTP request pipeline.
-//app.Use(async (context, next) =>
-//{
-//    context.Response.Headers["Cross-Origin-Opener-Policy"] = "same-origin-allow-popups";
-//    await next();
-//});
+app.UseMiddleware<ExceptionMiddleware>();
 
 app.UseCors("AllowTaskMasterClient");
 
