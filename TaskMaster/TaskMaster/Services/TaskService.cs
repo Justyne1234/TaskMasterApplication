@@ -33,7 +33,7 @@ namespace TaskMaster.Services
             };
             return await _taskRepository.CreateTask(task);
         }
-        public async Task<List<TaskResponse>> GetAllOwnerTasks(int id)
+        public async Task<List<TaskItem>> GetAllOwnerTasks(int id)
         {
             return await _taskRepository.GetAllTasksByOwnerId(id);
         }

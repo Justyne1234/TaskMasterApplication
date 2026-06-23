@@ -7,7 +7,7 @@ namespace TaskMaster.Repositories
     public interface ITaskRepository
     {
         public Task<int> CreateTask(TaskItem task);
-        public Task<List<TaskResponse>> GetAllTasksByOwnerId(int id);
+        public Task<List<TaskItem>> GetAllTasksByOwnerId(int id);
         public Task<TaskItem?> UpdateTask(TaskItem task);
         public Task<bool> DeleteTask(TaskItem task);
         public Task<TaskItem?> GetTaskById(int id);

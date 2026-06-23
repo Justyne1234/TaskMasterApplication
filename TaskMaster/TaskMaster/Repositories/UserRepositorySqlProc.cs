@@ -1,28 +1,28 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using TaskMaster.DbContexts;
 using TaskMaster.Models;
-using TaskMaster.Models.Requests;
 
 namespace TaskMaster.Repositories;
 
-public class UserRepository : IUserRepository
+public class UserRepositorySqlProc : IUserRepository
 {
     private readonly AppDbContext _dbContext;
-    public UserRepository(AppDbContext dbContext)
+    public UserRepositorySqlProc(AppDbContext dbContext)
     {
         _dbContext = dbContext;
     }
     public async Task<User?> GetUserByUsername(String username)
     {
         var user = await _dbContext.Users
-            .FirstOrDefaultAsync(x => x.Username == username);
-        return user;
+                .FromSqlInterpolated($"CALL GetUserByUsername({username})")
+                .ToListAsync();
+        return user.FirstOrDefault();
     }
 
     public async Task<User> Register(User request)
     {
-       _dbContext.Add(request);
-        await _dbContext.SaveChangesAsync();
+        await _dbContext.Database
+            .ExecuteSqlInterpolatedAsync($@"CALL RegisterUser({request.Username}, {request.Password})");
         return request;
     }
 }

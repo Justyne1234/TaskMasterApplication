@@ -19,9 +19,9 @@ builder.Services.AddControllers();
 
 //Add Services
 builder.Services.AddScoped<ITaskService, TaskService>();
-builder.Services.AddScoped<ITaskRepository, TaskRepository>();
+builder.Services.AddScoped<ITaskRepository, TaskRepositorySqlProc>();
 builder.Services.AddScoped<IUserService, UserService>();
-builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IUserRepository, UserRepositorySqlProc>();
 builder.Services.AddScoped<GoogleApiService>();
 builder.Services.AddScoped<JwtService>();
 builder.Services.AddScoped<PasswordHasher<User>>();

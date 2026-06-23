@@ -21,21 +21,10 @@ namespace TaskMaster.Repositories
             await _dbContext.SaveChangesAsync();
             return task.Id;
         }
-        public async Task<List<TaskResponse>> GetAllTasksByOwnerId(int ownerId)
+        public async Task<List<TaskItem>> GetAllTasksByOwnerId(int ownerId)
         {
             var tasks = await _dbContext.Tasks
                 .Where(x => x.OwnerId == ownerId)
-                .Select(x => new TaskResponse
-                {
-                    Id = x.Id,
-                    OwnerId = x.OwnerId,
-                    Title = x.Title,
-                    Description = x.Description,
-                    DueDate = x.DueDate,
-                    Category = x.Category,
-                    Priority = x.Priority,
-                    Status = x.Status
-                })
                 .ToListAsync();
             return tasks;
         }
