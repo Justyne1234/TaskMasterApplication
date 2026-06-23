@@ -56,9 +56,8 @@ namespace TaskMaster.Repositories
 
         public async Task<TaskItem?> GetTaskById(int id)
         {
-            var task = await _dbContext.Tasks
+            return await _dbContext.Tasks
                 .FirstOrDefaultAsync(x => x.Id == id);
-            return task;
         }
     }
 }
