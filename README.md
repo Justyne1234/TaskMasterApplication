@@ -7,11 +7,11 @@ Task Master is a task management system that allows users to create, view, edit,
 
 ## Tech Stack
 - Backend: .NET 8 (ASP.NET Core Web API)
-    - <PackageReference Include="Google.Apis.Auth" Version="1.75.0" />
-    - <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.28" />
-    - <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.28" />
-    - <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.28">
-    - <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="8.0.2" />
+    - PackageReference Include="Google.Apis.Auth" Version="1.75.0"
+    - PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.28"
+    - PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.28"
+    - PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.28"
+    - PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="8.0.2"
 - Frontend: Angular 20
     - "@angular/material": "^20.2.14",
 - Database: MySQL
