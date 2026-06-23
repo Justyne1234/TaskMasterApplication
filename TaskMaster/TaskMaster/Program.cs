@@ -3,9 +3,11 @@ using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using TaskMaster.DbContexts;
 using TaskMaster.Models;
+using TaskMaster.Models.Options;
 using TaskMaster.Repositories;
 using TaskMaster.Services;
 
@@ -32,6 +34,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
         new MySqlServerVersion(new Version(8, 0, 0))
     );
 });
+builder.Services.Configure<GoogleAuthOptions>(builder.Configuration.GetSection("GoogleAuthConfiguration"));
 
 var jwtSettings = builder.Configuration.GetSection("JwtConfiguration");
 

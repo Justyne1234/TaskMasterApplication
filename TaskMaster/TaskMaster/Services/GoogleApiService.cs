@@ -1,13 +1,20 @@
 ﻿using Google.Apis.Auth;
+using Microsoft.Extensions.Options;
+using TaskMaster.Models.Options;
 
 namespace TaskMaster.Services;
 public class GoogleApiService
 {
+    private readonly GoogleAuthOptions _options;
+    public GoogleApiService(IOptions<GoogleAuthOptions> options)
+    {
+        _options = options.Value;
+    }
     public async Task<GoogleJsonWebSignature.Payload> VerifyGoogleToken(string idToken)
     {
         var settings = new GoogleJsonWebSignature.ValidationSettings()
         {
-            Audience = new[] { "441410491160-43v674dfj4912toma3ci3qtk2cvrsg8i.apps.googleusercontent.com" }
+            Audience = new[] { _options.ClientId }
         };
 
         var payload = await GoogleJsonWebSignature.ValidateAsync(idToken, settings);
