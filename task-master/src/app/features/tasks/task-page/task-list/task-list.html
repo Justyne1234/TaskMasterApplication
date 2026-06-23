@@ -2,7 +2,7 @@
     <div *ngFor="let task of tasks$ | async" class="task-card" (click)="onSelectTask(task.id)">
         <div class="card-col-1">
             <h3>{{ task.title }}</h3>
-            <p>{{ task.description }}</p>
+            <p>{{ contractDescription(task.description ?? '') }}</p>
         </div>
         
         <div class="card-col-2">
@@ -11,3 +11,26 @@
         </div>
     </div>
 </div>
+
+<!-- <div class="card-container">
+  <div
+    *ngFor="let task of tasks$ | async"
+    class="task-card"
+    (click)="onSelectTask(task.id)"
+  >
+    <div class="card-main">
+      <h3 class="task-title">{{ task.title }}</h3>
+      <p class="task-desc">{{ task.description }}</p>
+    </div>
+
+    <div class="card-meta">
+      <span class="status" [attr.data-status]="task.status">
+        {{ formatStatus(task.status) }}
+      </span>
+
+      <span class="priority" [attr.data-priority]="task.priority">
+        {{ task.priority }}
+      </span>
+    </div>
+  </div>
+</div> -->

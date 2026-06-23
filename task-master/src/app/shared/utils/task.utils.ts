@@ -11,4 +11,11 @@ export class TaskUtils{
             return status;
         }
     }
+
+    static contractDescription(description: string): string {
+        if( description.length > 20 ){
+            return `${description.slice(0, 20)} ... see more`;
+        }
+        return description;
+    }
 }

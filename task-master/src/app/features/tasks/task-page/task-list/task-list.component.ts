@@ -30,8 +30,11 @@ export class TaskListComponent {
     this.router.navigate(['/tasks', id])
   }
 
-  formatStatus(status: string)
-  {
+  formatStatus(status: string): string {
     return TaskUtils.formatStatus(status);
+  }
+
+  contractDescription(description: string): string {
+    return TaskUtils.contractDescription(description);
   }
 }

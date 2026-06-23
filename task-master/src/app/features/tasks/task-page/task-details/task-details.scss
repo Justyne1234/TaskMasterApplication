@@ -5,8 +5,11 @@
   border-radius: 6px;
   background: #f9f9f9;
   min-height: 18px;
-}
 
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
 .button-row {
   display: flex;
   flex-direction: column;
